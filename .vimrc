@@ -2,6 +2,10 @@
 
 set filetype=unknown
 set background=dark
+colorscheme solarized
+set clipboard=unnamed
+set guifont=Menlo\ Regular:h12
+set number
 set confirm
 set guioptions=agimrLtTbH
 set noequalalways
