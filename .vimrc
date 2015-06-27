@@ -1,7 +1,7 @@
 " #!/usr/bin/vim -nNesc:let&verbose=1|let&viminfo=""|source%|echo""|qall!
 
 set filetype=unknown
-set background=dark
+set background=light
 colorscheme solarized
 set clipboard=unnamed
 set guifont=Menlo\ Regular:h12
