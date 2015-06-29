@@ -1,5 +1,6 @@
 " #!/usr/bin/vim -nNesc:let&verbose=1|let&viminfo=""|source%|echo""|qall!
-
+set nocp
+execute pathogen#infect()
 set filetype=unknown
 set background=dark
 colorscheme solarized
@@ -12,6 +13,8 @@ set noequalalways
 set laststatus=2
 set scrolloff=2
 set ttyfast
+set foldmethod=indent
+set foldlevel=99
 
 set backspace=indent,eol,start
 set smartindent
