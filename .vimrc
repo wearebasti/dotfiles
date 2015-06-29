@@ -2,7 +2,7 @@
 set nocp
 execute pathogen#infect()
 set filetype=unknown
-set background=dark
+set background=light
 colorscheme solarized
 set clipboard=unnamed
 set guifont=Menlo\ Regular:h12
