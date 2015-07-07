@@ -1,8 +1,23 @@
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
 [user]
-	name = ndparker
-	email = ndparker@users.noreply.github.com
+	name = sebastianseitz
+	email = sebastian.seitz@stylight.com
+[color]
+	ui = true
+[core]
+    pager = less -R
+	excludesfile = /Users/seitzs/.gitignore_global
 [push]
-	default = simple
+	default = current
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr%Creset %Cblue[%ar]%Creset %C(bold blue)<%an>%Creset' --color --abbrev-commit
-	st = status
+	noup = log --graph --decorate --pretty=oneline --abbrev-commit --all @{upstream}^..
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
