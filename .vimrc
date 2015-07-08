@@ -2,8 +2,9 @@
 set nocp
 execute pathogen#infect()
 set filetype=unknown
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme darkblue
+
 set clipboard=unnamed
 set guifont=Menlo\ Regular:h12
 set number
@@ -15,6 +16,7 @@ set scrolloff=2
 set ttyfast
 set foldmethod=indent
 set foldlevel=99
+set cursorline
 
 set backspace=indent,eol,start
 set smartindent
