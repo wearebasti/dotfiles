@@ -23,7 +23,9 @@ set smartindent
 set display="lastline,uhex"
 set selection=exclusive
 set syntax=on
+set nowrap
 set textwidth=80
+set wrapmargin=0
 set undolevels=500
 
 set endofline
@@ -41,6 +43,7 @@ set secure
 set modeline
 
 set colorcolumn=+1
+let g:gitgutter_max_signs=1000
 
 if !exists("*s:SetupSyntastic")
 " setup syntastic
