@@ -25,7 +25,7 @@ unset i
 
 umask 022
 
-declare -A colors=(
+declare colors=(
     ["red"]="31"
     ["green"]="32"
     ["yellow"]="33"
@@ -84,6 +84,17 @@ prompt_command() {
 PROMPT_COMMAND=prompt_command
 PROMPT_DIRTRIM=3
 
+# aliases
+alias ls='ls -l -h -G -p -A'
+alias ..='cd ..'
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'
+alias grep='grep --color=auto'
+alias df='df -h'
+alias less='less -N'
+alias diff='diff --suppress-common-lines'
+
 alias grb='git fetch && git rebase origin/master'
 alias gst='git status'
 alias fab="venvexec.sh ./ fab"
@@ -131,4 +142,3 @@ grunt() {
 
 [ -r /usr/bin/virtualenvwrapper.sh ] && . /usr/bin/virtualenvwrapper.sh
 [ -r ~/.bash_profile_private ] && . ~/.bash_profile_private
-

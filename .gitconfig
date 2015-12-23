@@ -9,7 +9,7 @@
 	ui = true
 [core]
     pager = less -R
-	excludesfile = /Users/seitzs/.gitignore_global
+	excludesfile = ˜/.gitignore
 [push]
 	default = current
 [alias]
