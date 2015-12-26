@@ -43,7 +43,6 @@ set secure
 set modeline
 
 set colorcolumn=+1
-let g:gitgutter_max_signs=1000
 
 if !exists("*s:SetupSyntastic")
 " setup syntastic
