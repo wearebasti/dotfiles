@@ -1,8 +1,80 @@
-#!/bin/bash
+#  ---------------------------------------------------------------------------
+#
+#  Description:  This file holds all my BASH configurations and aliases
+#
+#  Sections:
+#  1.   Environment Configuration
+#  2.   Make Terminal Better (remapping defaults and adding functionality)
+#  3.   File and Folder Management
+#  4.   Searching
+#  5.   Process Management
+#  6.   Networking
+#  7.   System Operations & Information
+#  8.   Web Development
+#  9.   Reminders & Notes
+#   -------------------------------
+#   1.  ENVIRONMENT CONFIGURATION
+#   -------------------------------
+#   Set Default Editor (change 'Nano' to the editor of your choice)
+#   ------------------------------------------------------------
+    export EDITOR=/usr/bin/vim
+    
+# DOCKER github-rate limit upgrade
+    export HOMEBREW_GITHUB_API_TOKEN=4fa13b88308cc7fff37629506bb90ec3fae88091
 
-HISTFILESIZE=100000
-HISTSIZE=100000
+# following the INSTALL.md file from stylight-core:
+    export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
 
+# Making the rabbitmq-server-scripts available:
+    export PATH=$PATH:/usr/local/sbin:/Users/seitzs/bin
+    export GOPATH=/Users/seitzs/gocode/
+#   Add color to terminal
+#   (this is all commented out as I use Mac Terminal Profiles)
+#   from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
+#   ------------------------------------------------------------
+#   export CLICOLOR=1
+  # export LSCOLORS=ExFxBxDxCxegedabagacad
+#   export LSCOLORS=GxFxCxDxBxegedabagaced
+#   -----------------------------
+#   2.  MAKE TERMINAL BETTER
+#   -----------------------------
+
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias ls='ls -FGlAhp'                       # Preferred 'ls' implementation
+alias less='less -FSRXc'                    # Preferred 'less' implementation
+cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
+alias grep='grep --color=always'
+alias ..='cd ..'
+alias docker_init='eval "$(docker-machine env dev)"'
+#   extract:  Extract most know archives with one command
+#   ---------------------------------------------------------
+    extract () {
+        if [ -f $1 ] ; then
+          case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *.zip)       unzip $1       ;;
+            *)     echo "'$1' cannot be extracted via extract()" ;;
+             esac
+         else
+             echo "'$1' is not a valid file"
+         fi
+    }
+
+# Copied from Andre
 ccache="/usr/lib/ccache/bin:"
 PATH="~/bin:${PATH}"
 old_IFS="$IFS"; IFS=":"; newpath=
@@ -25,15 +97,6 @@ unset i
 
 umask 022
 
-declare colors=(
-    ["red"]="31"
-    ["green"]="32"
-    ["yellow"]="33"
-    ["blue"]="34"
-    ["cyan"]="36"
-    ["white"]="37"
-    ["reset"]="00"
-)
 
 c() {
     local bold=
@@ -76,29 +139,18 @@ parse_git_repo() {
 }
 
 prompt_command() {
-    PS1="$(pc green bold)\u@\h$(pc blue bold) \w$(pc reset)$(parse_git_repo) $(pc blue bold)\$$(pc reset) "
+    PS1="\[$(tput sgr0)\]\[$(tput setaf 4)\]\[$(tput bold)\]\u@\h\[$(tput sgr0)\]\[$(tput setaf 4)\]\[$(tput bold)\]$(parse_git_repo) \$\[$(tput sgr0)\] "
     if [ -n "${VIRTUAL_ENV}" ]; then
-        PS1="$(pc white bold)($(basename "${VIRTUAL_ENV}"))$(pc reset) ${PS1}"
+        PS1="\[$(tput setaf 256)\]\[$(tput bold)\]($(basename "${VIRTUAL_ENV}"))\[$(tput sgr0)\] ${PS1}"
     fi
+    PS1="\n\[$(tput setaf 3)\]$(pwd)\[$(tput setaf 3)\]\n${PS1}"
 }
 PROMPT_COMMAND=prompt_command
 PROMPT_DIRTRIM=3
 
-# aliases
-alias ls='ls -l -h -G -p -A'
-alias ..='cd ..'
-alias cp='cp -iv'                           # Preferred 'cp' implementation
-alias mv='mv -iv'                           # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'
-alias grep='grep --color=auto'
-alias df='df -h'
-alias less='less -N'
-alias diff='diff --suppress-common-lines'
-
 alias grb='git fetch && git rebase origin/master'
 alias gst='git status'
 alias fab="venvexec.sh ./ fab"
-alias tac="tail -r"
 
 BOWERBIN="$(which bower 2>/dev/null)"
 bower() {
@@ -141,4 +193,8 @@ grunt() {
 }
 
 [ -r /usr/bin/virtualenvwrapper.sh ] && . /usr/bin/virtualenvwrapper.sh
-[ -r ~/.bash_profile_private ] && . ~/.bash_profile_private
+
+#   Change Prompt
+#   ------------------------------------------------------------
+    # Custom bash prompt via kirsle.net/wizards/ps1.html
+#PS1='\w\n\u@\h\\$
