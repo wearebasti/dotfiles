@@ -49,6 +49,7 @@ alias less='less -FSRXc'                    # Preferred 'less' implementation
 cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
 alias grep='grep --color=always'
 alias ..='cd ..'
+alias tac='tail -r'
 alias docker_init='eval "$(docker-machine env dev)"'
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
