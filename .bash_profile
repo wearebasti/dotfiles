@@ -96,6 +96,9 @@ unset ccache
 unset old_IFS
 unset i
 
+# pip should only run if there is a virtualenv currently activated
+export PIP_REQUIRE_VIRTUALENV=true
+
 umask 022
 
 
