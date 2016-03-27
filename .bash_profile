@@ -29,7 +29,6 @@
 
 # Making the rabbitmq-server-scripts available:
     export PATH=$PATH:/usr/local/sbin:/Users/seitzs/bin
-    export GOPATH=/Users/seitzs/gocode/
 #   Add color to terminal
 #   (this is all commented out as I use Mac Terminal Profiles)
 #   from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
@@ -51,6 +50,7 @@ alias grep='grep --color=always'
 alias ..='cd ..'
 alias tac='tail -r'
 alias docker_init='eval "$(docker-machine env dev)"'
+alias mview='mvim -R'
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
     extract () {
@@ -95,9 +95,6 @@ unset newpath
 unset ccache
 unset old_IFS
 unset i
-
-# pip should only run if there is a virtualenv currently activated
-export PIP_REQUIRE_VIRTUALENV=true
 
 umask 022
 
