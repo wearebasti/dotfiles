@@ -6,7 +6,7 @@ set background=dark
 colorscheme darkblue
 
 set clipboard=unnamed
-set guifont=Menlo\ Regular:h12
+set guifont=Hack:h12
 set number
 set confirm
 set guioptions=agimrLtTbH
