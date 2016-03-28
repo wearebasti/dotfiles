@@ -20,7 +20,7 @@ HELPDIR=/usr/local/share/zsh/help
 # Make history awesome
 setopt INC_APPEND_HISTORY
 
-# Use zsh-compeletions
+# Use zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Set Default Editor (change 'Nano' to the editor of your choice)
@@ -32,7 +32,6 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=$PATH:/usr/local/sbin:~/bin
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
-
 
 # Aliases
 source ~/.aliases

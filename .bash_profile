@@ -15,7 +15,7 @@
 #   -------------------------------
 #   1.  ENVIRONMENT CONFIGURATION
 #   -------------------------------
-#   Set Default Editor (change 'Nano' to the editor of your choice)
+#   Set Default Editor
 #   ------------------------------------------------------------
     export EDITOR=/usr/bin/vim
     
