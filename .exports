@@ -1,0 +1,12 @@
+# Set Default Editor (change 'Nano' to the editor of your choice)
+export EDITOR=vim
+export SHELL=/urs/local/bin/zsh
+
+# following the INSTALL.md file from stylight-core:
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+export PATH=~/bin:$PATH
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+# BREW github-rate limit upgrade
+export HOMEBREW_GITHUB_API_TOKEN=4fa13b88308cc7fff37629506bb90ec3fae88091

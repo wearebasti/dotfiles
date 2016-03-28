@@ -23,22 +23,14 @@ setopt INC_APPEND_HISTORY
 # Use zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-# Set Default Editor (change 'Nano' to the editor of your choice)
-export EDITOR=vim
-export SHELL=/urs/local/bin/zsh
-
-# following the INSTALL.md file from stylight-core:
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
-export PATH=$PATH:/usr/local/sbin:~/bin
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-
+# Exports
+source ~/.exports
 # Aliases
 source ~/.aliases
 
 # Copied from Andre, what does this do??
 ccache="/usr/lib/ccache/bin:"
-PATH="~/bin:${PATH}"
+
 old_IFS="$IFS"; IFS=":"; newpath=
 for i in $PATH; do
     if [ "$i" = "$ccache" ]; then
@@ -58,7 +50,6 @@ unset old_IFS
 unset i
 
 umask 022
-
 
 # plugins
 # source ~/.zsh_plugins/gitfast-zsh-plugin/git-prompt.sh

@@ -15,31 +15,8 @@
 #   -------------------------------
 #   1.  ENVIRONMENT CONFIGURATION
 #   -------------------------------
-#   Set Default Editor
-#   ------------------------------------------------------------
-    export EDITOR=/usr/bin/vim
-    
-# DOCKER github-rate limit upgrade
-    export HOMEBREW_GITHUB_API_TOKEN=4fa13b88308cc7fff37629506bb90ec3fae88091
 
-# following the INSTALL.md file from stylight-core:
-    export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
-    export WORKON_HOME=$HOME/.virtualenvs
-    source /usr/local/bin/virtualenvwrapper.sh
-
-# Making the rabbitmq-server-scripts available:
-    export PATH=$PATH:/usr/local/sbin:/Users/seitzs/bin
-#   Add color to terminal
-#   (this is all commented out as I use Mac Terminal Profiles)
-#   from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
-#   ------------------------------------------------------------
-#   export CLICOLOR=1
-  # export LSCOLORS=ExFxBxDxCxegedabagacad
-#   export LSCOLORS=GxFxCxDxBxegedabagaced
-#   -----------------------------
-#   2.  MAKE TERMINAL BETTER
-#   -----------------------------
-
+source ~/.exports
 source ~/.aliases
 
 cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
