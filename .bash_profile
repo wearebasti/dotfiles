@@ -40,17 +40,10 @@
 #   2.  MAKE TERMINAL BETTER
 #   -----------------------------
 
-alias cp='cp -iv'                           # Preferred 'cp' implementation
-alias mv='mv -iv'                           # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ls='ls -FGlAhp'                       # Preferred 'ls' implementation
-alias less='less -FSRXc'                    # Preferred 'less' implementation
+source ~/.aliases
+
 cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
-alias grep='grep --color=always'
-alias ..='cd ..'
-alias tac='tail -r'
-alias docker_init='eval "$(docker-machine env dev)"'
-alias mview='mvim -R'
+
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
     extract () {

@@ -1,0 +1,17 @@
+# Aliases defined for bash/zsh...
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias ls='ls -FGlAhp'                       # Preferred 'ls' implementation
+alias less='less -FSRXc'                    # Preferred 'less' implementation
+alias grep='grep --color=always'
+
+alias ..='cd ..'                            # /me hates that command...
+alias tac='tail -r'                         # well, mac...
+alias docker_init='eval "$(docker-machine env dev)"'
+alias mview='mvim -R'
+
+
+alias grb='git fetch && git rebase origin/master'
+alias gst='git status'
+alias fab="venvexec.sh ./ fab"

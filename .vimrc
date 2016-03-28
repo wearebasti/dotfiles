@@ -1,4 +1,5 @@
 " #!/usr/bin/vim -nNesc:let&verbose=1|let&viminfo=""|source%|echo""|qall!
+set shell=zsh
 set nocp
 execute pathogen#infect()
 set filetype=unknown

@@ -29,25 +29,37 @@ export SHELL=/urs/local/bin/zsh
 
 # following the INSTALL.md file from stylight-core:
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+export PATH=$PATH:/usr/local/sbin:~/bin
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
 
 # Aliases
-alias cp='cp -iv'                           # Preferred 'cp' implementation
-alias mv='mv -iv'                           # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ls='ls -FGlAhp'                       # Preferred 'ls' implementation
-alias less='less -FSRXc'                    # Preferred 'less' implementation
+source ~/.aliases
 
-alias ..='cd ..'
-alias tac='tail -r'
-alias docker_init='eval "$(docker-machine env dev)"'
-alias mview='mvim -R'
+# Copied from Andre, what does this do??
+ccache="/usr/lib/ccache/bin:"
+PATH="~/bin:${PATH}"
+old_IFS="$IFS"; IFS=":"; newpath=
+for i in $PATH; do
+    if [ "$i" = "$ccache" ]; then
+        ccache=
+    fi
+    if [ "$i" = "~/bin" ]; then
+        i="${HOME}/bin"
+    fi
+    newpath="${newpath:+${newpath}:}${i}"
+done
+IFS="$old_IFS"
+PATH="${ccache}${newpath}"
+export PATH
+unset newpath
+unset ccache
+unset old_IFS
+unset i
 
-alias grb='git fetch && git rebase origin/master'
-alias gst='git status'
-alias fab="venvexec.sh ./ fab"
+umask 022
+
 
 # plugins
 # source ~/.zsh_plugins/gitfast-zsh-plugin/git-prompt.sh
@@ -134,3 +146,5 @@ precmd() {
         RPS1=${repo}
     fi
 }
+
+[ -r /usr/bin/virtualenvwrapper.sh ] && . /usr/bin/virtualenvwrapper.sh
