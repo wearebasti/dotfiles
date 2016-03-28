@@ -3,7 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory nomatch
-bindkey -v
+# bindkey -v  # leave for now as key-bindings are strange in vim-mode
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/sebastian/.zshrc'
@@ -11,6 +11,11 @@ zstyle :compinstall filename '/Users/sebastian/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+# Help files:
+unalias run-help
+autoload run-help
+HELPDIR=/usr/local/share/zsh/help
 
 # Make history awesome
 setopt INC_APPEND_HISTORY
@@ -23,9 +28,9 @@ export EDITOR=vim
 export SHELL=/urs/local/bin/zsh
 
 # following the INSTALL.md file from stylight-core:
-    export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
-    export WORKON_HOME=$HOME/.virtualenvs
-    source /usr/local/bin/virtualenvwrapper.sh
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
 
 
 # Aliases
@@ -37,7 +42,7 @@ alias less='less -FSRXc'                    # Preferred 'less' implementation
 
 alias ..='cd ..'
 alias tac='tail -r'
-# alias docker_init='eval "$(docker-machine env dev)"'
+alias docker_init='eval "$(docker-machine env dev)"'
 alias mview='mvim -R'
 
 alias grb='git fetch && git rebase origin/master'
@@ -125,7 +130,7 @@ precmd() {
             repo="%{$reset_color%}%{$fg[red]%}${vcs_info_msg_0_}%{$reset_color%}"
         fi
 
-        PS1="%{$reset_color%}%{$fg[yellow]%}%~%{$reset_color%}${nl}%{$fg_bold[white]%}${venv_name}➤➤➤ %{$reset_color%} "
+        PS1="%{$reset_color%}%{$fg[yellow]%}%~%{$reset_color%}${nl}%{$fg_bold[blue]%}${venv_name}➤➤➤ %{$reset_color%} "
         RPS1=${repo}
     fi
 }
