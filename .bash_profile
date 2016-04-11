@@ -163,7 +163,7 @@ grunt() {
 )
 }
 
-[ -r /usr/bin/virtualenvwrapper.sh ] && . /usr/bin/virtualenvwrapper.sh
+[ -r /usr/local/bin/virtualenvwrapper.sh ] && . /usr/local/bin/virtualenvwrapper.sh
 
 #   Change Prompt
 #   ------------------------------------------------------------

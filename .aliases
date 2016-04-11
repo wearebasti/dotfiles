@@ -4,7 +4,10 @@ alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ls='ls -FGlAhp'                       # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
+
+# Moar colors
 alias grep='grep --color=always'
+alias tree='tree -C'
 
 alias ..='cd ..'                            # /me hates that command...
 alias tac='tail -r'                         # well, mac...

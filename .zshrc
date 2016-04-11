@@ -3,7 +3,6 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory nomatch
-# bindkey -v  # leave for now as key-bindings are strange in vim-mode
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/sebastian/.zshrc'
@@ -25,29 +24,20 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Exports
 source ~/.exports
+bindkey -e  # explicitly set it here as export EDITOR=vim changes it appearently
+
+# source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+# autoload zkbd
+source /Users/seitzs/.zkbd/xterm-256color-apple-darwin15.0
+[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" beginning-of-line
+[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" end-of-line
+[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+# bindkey -m
+
 # Aliases
 source ~/.aliases
-
-# Copied from Andre, what does this do??
-ccache="/usr/lib/ccache/bin:"
-
-old_IFS="$IFS"; IFS=":"; newpath=
-for i in $PATH; do
-    if [ "$i" = "$ccache" ]; then
-        ccache=
-    fi
-    if [ "$i" = "~/bin" ]; then
-        i="${HOME}/bin"
-    fi
-    newpath="${newpath:+${newpath}:}${i}"
-done
-IFS="$old_IFS"
-PATH="${ccache}${newpath}"
-export PATH
-unset newpath
-unset ccache
-unset old_IFS
-unset i
 
 umask 022
 
@@ -86,14 +76,14 @@ function +vi-git-st() {
     # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
     
     ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-    (( $ahead )) && gitstatus+=( " ⬆ ${ahead//[^[:alnum:]]/}" )
+    (( $ahead )) && gitstatus+=( " ⬆${ahead//[^[:alnum:]]/}" )
 
     # for git prior to 1.7
     # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
     behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-    (( $behind )) && gitstatus+=( " ⬇ ${behind[^[:alnum:]]/}" )
+    (( $behind )) && gitstatus+=( " ⬇${behind//[^[:alnum:]]/}" )
 
-    hook_com[misc]+=${(j:/:)gitstatus}
+    hook_com[misc]+=${(j::)gitstatus}
 }
 
 nl='
@@ -122,19 +112,27 @@ precmd() {
         unset RPS1
     else
         # vcs_info found something
+
+        # read stash count
+        stash_count=$(git stash list | wc -l)
+        if [ "$stash_count" -gt "0" ]; then
+            stash_count='(+'"${stash_count//[^[:alnum:]]/}"')'
+        else
+            stash_count=""
+        fi
+
+        # create Prompt Message w/ detailted git info
         if git diff --ignore-submodules=dirty --exit-code --quiet 2>/dev/null >&2; then
             if git diff --ignore-submodules=dirty --exit-code --cached --quiet 2>/dev/null >&2; then
-                repo="%{$reset_color%}%{$fg[green]%}${vcs_info_msg_0_}%{$reset_color%}"
+                repo="%{$reset_color%}%{$fg[green]%}${stash_count}${vcs_info_msg_0_}%{$reset_color%}"
             else
-                repo="%{$reset_color%}%{$fg[cyan]%}${vcs_info_msg_0_}%{$reset_color%}"
+                repo="%{$reset_color%}%{$fg[cyan]%}${stash_count}${vcs_info_msg_0_}%{$reset_color%}"
             fi
         else
-            repo="%{$reset_color%}%{$fg[red]%}${vcs_info_msg_0_}%{$reset_color%}"
+            repo="%{$reset_color%}%{$fg[red]%}${stash_count}${vcs_info_msg_0_}%{$reset_color%}"
         fi
 
         PS1="%{$reset_color%}%{$fg[yellow]%}%~%{$reset_color%}${nl}%{$fg_bold[blue]%}${venv_name}➤➤➤ %{$reset_color%} "
         RPS1=${repo}
     fi
 }
-
-[ -r /usr/bin/virtualenvwrapper.sh ] && . /usr/bin/virtualenvwrapper.sh

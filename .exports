@@ -1,6 +1,6 @@
-# Set Default Editor (change 'Nano' to the editor of your choice)
+# Set Default Editor
 export EDITOR=vim
-export SHELL=/urs/local/bin/zsh
+# export SHELL=/usr/local/bin/zsh didn't work as expected...
 
 # following the INSTALL.md file from stylight-core:
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
