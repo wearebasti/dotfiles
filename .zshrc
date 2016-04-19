@@ -106,8 +106,7 @@ precmd() {
     fi
 
     if [ -z "${vcs_info_msg_0_}" ]; then
-        # Oh hey, nothing from vcs_info, so we got more space.
-        # Let's print a longer part of $PWD...
+        # Oh hey, nothing from vcs_info
         PS1="%{$reset_color%}%{$fg[yellow]%}%~%{$reset_color%}${nl}%{$fg_bold[blue]%}${venv_name}➤➤➤ %{$reset_color%} "
         unset RPS1
     else
