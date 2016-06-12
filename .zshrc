@@ -51,19 +51,19 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' check-for-changes true
 zstyle ':vcs_info:git*' get-revision true
 zstyle ':vcs_info:git*' formats "[%b%m]%c%u" # branch % remote tracking
-# zstyle ':vcs_info:*+*:*' debug true
+## zstyle ':vcs_info:*+*:*' debug true
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-untracked
 
-+vi-git-untracked(){
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-        git status --porcelain | grep '??' &> /dev/null ; then
-        # This will show the marker if there are any untracked files in repo.
-        # If instead you want to show the marker only if there are untracked
-        # files in $PWD, use:
-        #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
-        hook_com[staged]+=' ?'
-    fi
-}
+#+vi-git-untracked(){
+#    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+#        git status --porcelain | grep '??' &> /dev/null ; then
+#        # This will show the marker if there are any untracked files in repo.
+#        # If instead you want to show the marker only if there are untracked
+#        # files in $PWD, use:
+#        #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
+#        hook_com[staged]+=' ?'
+#    fi
+#}
 
 
 ### git: Show +N/-N when your local branch is ahead-of or behind remote HEAD.
