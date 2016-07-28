@@ -28,7 +28,7 @@ bindkey -e  # explicitly set it here as export EDITOR=vim changes it appearently
 
 # source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 # autoload zkbd
-source /Users/seitzs/.zkbd/xterm-256color-apple-darwin15.0
+source ~/.zkbd_file
 [[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" beginning-of-line
 [[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" end-of-line
 [[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
@@ -54,16 +54,16 @@ zstyle ':vcs_info:git*' formats "[%b%m]%c%u" # branch % remote tracking
 ## zstyle ':vcs_info:*+*:*' debug true
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-untracked
 
-#+vi-git-untracked(){
-#    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-#        git status --porcelain | grep '??' &> /dev/null ; then
-#        # This will show the marker if there are any untracked files in repo.
-#        # If instead you want to show the marker only if there are untracked
-#        # files in $PWD, use:
-#        #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
-#        hook_com[staged]+=' ?'
-#    fi
-#}
++vi-git-untracked(){
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        # This will show the marker if there are any untracked files in repo.
+        # If instead you want to show the marker only if there are untracked
+        # files in $PWD, use:
+        #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
+        hook_com[staged]+=' ?'
+    fi
+}
 
 
 ### git: Show +N/-N when your local branch is ahead-of or behind remote HEAD.
