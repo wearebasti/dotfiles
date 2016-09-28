@@ -24,6 +24,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Exports
 source ~/.exports
+source ~/.privates
 bindkey -e  # explicitly set it here as export EDITOR=vim changes it appearently
 
 # source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
@@ -135,3 +136,56 @@ precmd() {
         RPS1=${repo}
     fi
 }
+
+# Put your base credentials (user key and secret) into [user]
+function amz() {(
+    set +x
+
+    local arn token role cmd
+
+    token=
+    role=
+    arn="$(
+        aws sts get-caller-identity --profile user --output text \
+        | awk '{sub(":user/", ":mfa/", $2); print $2}'
+    )"
+
+    if echo "${1}" | grep -q '^[0-9][0-9][0-9][0-9][0-9][0-9]$'; then
+        token="${1}"
+        shift
+    fi
+
+    if [ -n "${1}" ]; then
+        role="${1}"
+        shift
+    fi
+
+    if [ -z "${token}" ]; then
+        if echo "${1}" | grep -q '^[0-9][0-9][0-9][0-9][0-9][0-9]$'; then
+            token="${1}"
+            shift
+        else
+            echo -n "MFA: "
+            read token
+        fi
+    fi
+
+    if [ -n "${role}" ]; then
+        if (( $+aws_roles[$role] )); then
+          role=$aws_roles[$role]
+        fi
+        cmd=( aws sts assume-role --role-arn "${role}" --role-session-name foo
+              --profile user )
+    else
+        cmd=( aws sts get-session-token --profile user )
+    fi
+
+    "${cmd[@]}" --serial-number "${arn}" --token-code "${token}" --output text \
+    | awk '/^CREDENTIALS/ {print \
+        "aws_access_key_id " $2 \
+        "\naws_secret_access_key " $4 \
+        "\naws_session_token " $5 \
+    }' | while read key value; do
+        aws configure set "${key}" "${value}" --profile default
+    done
+)}
