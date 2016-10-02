@@ -24,7 +24,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Exports
 source ~/.exports
-source ~/.privates
+[[ -r ~/.privates ]] && source ~/.privates
 bindkey -e  # explicitly set it here as export EDITOR=vim changes it appearently
 
 # source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
