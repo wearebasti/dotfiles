@@ -227,3 +227,6 @@ amz() {(
         aws configure set "${key}" "${value}" --profile default
     done
 )}
+
+source ~/.privates
+source ~/.aws_login
