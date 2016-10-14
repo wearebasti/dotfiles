@@ -12,7 +12,7 @@ compinit
 # End of lines added by compinstall
 
 # Help files:
-unalias run-help
+# unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
 
