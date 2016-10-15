@@ -9,7 +9,7 @@
 	ui = true
 [core]
     pager = less -R
-	# excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 [push]
 	default = current
 [alias]

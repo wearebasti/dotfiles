@@ -228,5 +228,9 @@ amz() {(
     done
 )}
 
-source ~/.privates
-source ~/.aws_login
+if [ -e ~/.privates ]; then
+    source ~/.privates
+fi
+if [ -e ~/.aws_login ]; then
+    source ~/.aws_login
+fi
