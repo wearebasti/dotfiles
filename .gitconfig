@@ -3,7 +3,7 @@
 	smudge = git lfs smudge %f
 	required = true
 [user]
-	name = sebastianseitz
+	name = basti
 	email = sebastian.seitz@stylight.com
 [color]
 	ui = true
