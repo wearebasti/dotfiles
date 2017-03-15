@@ -20,6 +20,7 @@ alias gst='git status'
 alias fab="venvexec.sh ./ fab"
 alias inv="venvexec.sh ./ inv"
 
-alias docker_remove_containers='for container in $(docker ps -a -q); do docker rm -f ${container}; done'
-alias docker_remove_images='for container in $(docker images -a -q); do docker rmi -f ${container}; done'
-alias dockersucks='docker_remove_containers && docker_remove_images && docker volume rm $(docker volume ls -qf dangling=true)'
+alias docker_remove_containers='docker rm -f $(docker ps -aq)'
+alias docker_remove_images='docker rmi -f $(docker images -aq)'
+alias docker_remove_volumes='docker volume rm $(docker volume ls -qf dangling=true)'
+alias dockersucks='docker_remove_containers && docker_remove_images && docker_remove_volumes'
