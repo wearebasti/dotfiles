@@ -14,9 +14,12 @@ alias tac='tail -r'                         # well, mac...
 alias docker_init='eval "$(docker-machine env default)"'
 alias mview='mvim -R'
 
-
+# git
 alias grb='git fetch && git rebase origin/master'
 alias gst='git status'
+alias gplease='git push --force-with-lease'
+
+# venv fab&inv calls
 alias fab="venvexec.sh ./ fab"
 alias inv="venvexec.sh ./ inv"
 

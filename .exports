@@ -9,3 +9,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 # BREW github-rate limit upgrade
 export HOMEBREW_GITHUB_API_TOKEN=4fa13b88308cc7fff37629506bb90ec3fae88091
+
+
+# GO Paths
+export GOPATH=$HOME/Development/go
+export PATH=$PATH:$GOPATH/bin
