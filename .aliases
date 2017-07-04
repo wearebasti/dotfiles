@@ -12,7 +12,10 @@ alias tree='tree -C'
 alias ..='cd ..'                            # /me hates that command...
 alias tac='tail -r'                         # well, mac...
 alias docker_init='eval "$(docker-machine env default)"'
+
+# Vim
 alias mview='mvim -R'
+alias diffmaster='git difftool --tool=gvimdiff origin/master'
 
 # git
 alias grb='git fetch && git rebase origin/master'
@@ -27,3 +30,16 @@ alias docker_remove_containers='docker rm -f $(docker ps -aq)'
 alias docker_remove_images='docker rmi -f $(docker images -aq)'
 alias docker_remove_volumes='docker volume rm $(docker volume ls -qf dangling=true)'
 alias dockersucks='docker_remove_containers && docker_remove_images && docker_remove_volumes'
+
+
+function purple {
+    mkvirtualenv ${1}
+    workon ${1}
+    pip install --upgrade pip
+    cd "$VIRTUAL_ENV"
+    git clone git@github.com:stylight/${1}.git src/${1}
+    cd src/${1}
+    pip install -r development.txt
+    echo 'cd "$VIRTUAL_ENV"/src/'"${1}" >> "$VIRTUAL_ENV"/bin/postactivate
+    ln -s "$VIRTUAL_ENV"/src/"${1}" "$HOME"/Development/"${1}"
+}
