@@ -4,11 +4,13 @@ export EDITOR=vim
 
 # following the INSTALL.md file from stylight-core:
 export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+# mac only (need a way to distinguish...):
+export PATH=/usr/local/opt/python/libexec/bin:$PATH
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
 # BREW github-rate limit upgrade
-export HOMEBREW_GITHUB_API_TOKEN=4fa13b88308cc7fff37629506bb90ec3fae88091
+# export HOMEBREW_GITHUB_API_TOKEN=
 
 
 # GO Paths
