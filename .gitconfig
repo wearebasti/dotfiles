@@ -17,3 +17,5 @@
 	noup = log --graph --decorate --pretty=oneline --abbrev-commit --all @{upstream}^..
 [credential]
 	helper = osxkeychain
+[gpg]
+	program = /usr/local/bin/gpg2
