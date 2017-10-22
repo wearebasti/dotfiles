@@ -6,7 +6,9 @@ export EDITOR=vim
 export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 # mac only (need a way to distinguish...):
 export PATH=/usr/local/opt/python/libexec/bin:$PATH
+
 export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
 source /usr/local/bin/virtualenvwrapper.sh
 
 # BREW github-rate limit upgrade
