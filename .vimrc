@@ -45,6 +45,10 @@ set modeline
 
 set colorcolumn=+1
 
+" activate ctrlp and use splitright to open in right split on ctrl-v
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+set splitright
+
 if !exists("*s:SetupSyntastic")
 " setup syntastic
 let s:pylintrc = ""

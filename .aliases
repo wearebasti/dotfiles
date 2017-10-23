@@ -17,6 +17,9 @@ alias docker_init='eval "$(docker-machine env default)"'
 alias mview='mvim -R'
 alias diffmaster='git difftool --tool=gvimdiff origin/master'
 
+# VSCode
+alias vcode='code ${VIRTUAL_ENV}'
+
 # git
 alias grb='git fetch && git rebase origin/master'
 alias gst='git status'
