@@ -1,21 +1,21 @@
-[filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
-	required = true
-[user]
-	name = basti
-	email = sebastianseitz@users.noreply.github.com
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr%Creset %Cblue[%ar]%Creset %C(bold blue)<%an>%Creset' --color --abbrev-commit
+	noup = log --graph --decorate --pretty=oneline --abbrev-commit --all @{upstream}^..
 [color]
 	ui = true
 [core]
     pager = less -R
 	excludesfile = ~/.gitignore
-[push]
-	default = current
-[alias]
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr%Creset %Cblue[%ar]%Creset %C(bold blue)<%an>%Creset' --color --abbrev-commit
-	noup = log --graph --decorate --pretty=oneline --abbrev-commit --all @{upstream}^..
 [credential]
 	helper = osxkeychain
-[gpg]
-	program = /usr/local/bin/gpg2
+[diff]
+    renames = copies
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[push]
+	default = current
+[user]
+	name = basti
+	email = sebastianseitz@users.noreply.github.com
