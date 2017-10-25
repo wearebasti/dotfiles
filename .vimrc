@@ -49,6 +49,9 @@ set colorcolumn=+1
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set splitright
 
+" activate strip whitespace on save via `vim-better-whitespace-master`
+let strip_whitespace_on_save = 1
+
 if !exists("*s:SetupSyntastic")
 " setup syntastic
 let s:pylintrc = ""
