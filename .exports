@@ -8,8 +8,8 @@ export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
 export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
-source /usr/local/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=$(which python2)
+source $(which virtualenvwrapper.sh)
 
 # BREW github-rate limit upgrade
 # export HOMEBREW_GITHUB_API_TOKEN=

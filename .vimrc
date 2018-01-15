@@ -6,8 +6,13 @@ set filetype=unknown
 set background=dark
 colorscheme darkblue
 
-set clipboard=unnamed
-set guifont=Hack:h12
+if has('unix')
+    set guifont=Hack
+endif
+if has('macosx')
+    set clipboard=unnamed
+    set guifont=Hack:h12
+endif
 set number
 set confirm
 set guioptions=agimrLtTbH
@@ -23,7 +28,8 @@ set backspace=indent,eol,start
 set smartindent
 set display="lastline,uhex"
 set selection=exclusive
-set syntax=on
+" set syntax=on  -- is this needed on macOS?
+syntax on
 set nowrap
 set textwidth=80
 set wrapmargin=0
