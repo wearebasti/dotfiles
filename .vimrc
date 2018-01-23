@@ -7,7 +7,8 @@ set background=dark
 colorscheme darkblue
 
 if has('unix')
-    set guifont=Hack
+    set guifont=Hack\ 9
+    set clipboard=unnamedplus
 endif
 if has('macosx')
     set clipboard=unnamed
