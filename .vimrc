@@ -125,3 +125,8 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " visual mode search
 vnorem // y/<c-r>"<cr>
 vnorem ?? y?<c-r>"<cr>
+
+" flag unnecassry whitespace
+" https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/#vundle
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/

@@ -9,6 +9,7 @@ export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=$(which python2)
+export VIRTUALENVWRAPPER_VIRTUALENV=$(which virtualenv)
 source $(which virtualenvwrapper.sh)
 
 # BREW github-rate limit upgrade

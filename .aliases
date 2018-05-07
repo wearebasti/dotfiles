@@ -2,7 +2,7 @@
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ls='ls -FGlAhp'                       # Preferred 'ls' implementation
+alias ls='ls -FGlAhp --color=auto'          # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 
 # Moar colors
@@ -16,9 +16,6 @@ alias docker_init='eval "$(docker-machine env default)"'
 # Vim
 alias mview='mvim -R'
 alias diffmaster='git difftool --tool=gvimdiff origin/master'
-
-# VSCode
-alias vcode='code ${VIRTUAL_ENV}'
 
 # git
 alias grb='git fetch && git rebase origin/master'
