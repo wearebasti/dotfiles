@@ -1,4 +1,3 @@
-" #!/usr/bin/vim -nNesc:let&verbose=1|let&viminfo=""|source%|echo""|qall!
 set shell=zsh
 set nocp
 execute pathogen#infect()
@@ -14,6 +13,14 @@ if has('macosx')
     set clipboard=unnamed
     set guifont=Hack:h12
 endif
+
+" set vimdir
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
+set clipboard=unnamed
+set guifont=Hack:h12
+
 set number
 set confirm
 set guioptions=agimrLtTbH

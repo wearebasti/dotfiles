@@ -43,3 +43,15 @@ function purple {
     echo 'cd "$VIRTUAL_ENV"/src/'"${1}" >> "$VIRTUAL_ENV"/bin/postactivate
     ln -s "$VIRTUAL_ENV"/src/"${1}" "$HOME"/Development/"${1}"
 }
+
+function purple3 {
+    mkvirtualenv -p $(which python3) ${1}
+    workon ${1}
+    pip install --upgrade pip
+    cd "$VIRTUAL_ENV"
+    git clone git@github.com:stylight/${1}.git src/${1}
+    cd src/${1}
+    PYCURL_SSL_LIBRARY=openssl LDFLAGS=-L/usr/local/opt/openssl/lib CPPFLAGS=-I/usr/local/opt/openssl/include pip install -r development.txt
+    echo 'cd "$VIRTUAL_ENV"/src/'"${1}" >> "$VIRTUAL_ENV"/bin/postactivate
+    ln -s "$VIRTUAL_ENV"/src/"${1}" "$HOME"/Development/"${1}"
+}

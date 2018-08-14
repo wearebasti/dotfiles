@@ -3,6 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory nomatch
+setopt correct  # autocorrect commands
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/sebastian/.zshrc'
@@ -75,7 +76,7 @@ function +vi-git-st() {
 
     # for git prior to 1.7
     # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
-    
+
     ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
     (( $ahead )) && gitstatus+=( " ⬆${ahead//[^[:alnum:]]/}" )
 
@@ -95,7 +96,7 @@ autoload -U colors && colors
 precmd() {
     # As always first run the system so everything is setup correctly.
     vcs_info
-    # And then just set PS1, RPS1 and whatever you want to. 
+    # And then just set PS1, RPS1 and whatever you want to.
     # See "man zshmisc" for details on how to
     # make this less readable. :-)
 
@@ -139,3 +140,4 @@ precmd() {
 
 # AWS Stuff
 source ~/.aws_login
+export PATH="/usr/local/opt/openssl/bin:$PATH"

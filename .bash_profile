@@ -165,11 +165,6 @@ grunt() {
 
 [ -r /usr/local/bin/virtualenvwrapper.sh ] && . /usr/local/bin/virtualenvwrapper.sh
 
-#   Change Prompt
-#   ------------------------------------------------------------
-    # Custom bash prompt via kirsle.net/wizards/ps1.html
-#PS1='\w\n\u@\h\\$
-
 declare -A aws_roles
 #declare -A aws_roles=(
 #    ["name"]="role-arn"
@@ -234,3 +229,9 @@ fi
 if [ -e ~/.aws_login ]; then
     source ~/.aws_login
 fi
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+
+# Start ssh-agent
+eval $(ssh-agent)
