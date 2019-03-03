@@ -3,7 +3,7 @@ export EDITOR=vim
 # export SHELL=/usr/local/bin/zsh didn't work as expected...
 
 # set $HOME or macOS won't work anymore...
-export HOME=/Users/seitzs/
+export HOME=/Users/sebastianseitz/
 
 # following the INSTALL.md file from stylight-core:
 export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
@@ -12,14 +12,22 @@ export PATH=/usr/local/opt/python@3/libexec/bin:/usr/local/opt/python@3/bin:$PAT
 # mac only (need a way to distinguish...):
 export PATH=/usr/local/opt/python@2/libexec/bin:/usr/local/opt/python@2/bin:$PATH
 
+# put gettext into PATH for pycharm to find (i18n support)
+export PATH=/usr/local/opt/gettext/bin:$PATH
+
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=$(which python2)
 export VIRTUALENVWRAPPER_VIRTUALENV=$(which virtualenv)
 source $(which virtualenvwrapper.sh)
 
+export LSCOLORS='gxfxcxdxbxGxDxabagacad'  # teal directories..
+
 # BREW github-rate limit upgrade
 # export HOMEBREW_GITHUB_API_TOKEN=
 
+# MacOS doesn't know the locale...
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # GO Paths
 export GOPATH=$HOME/Development/go

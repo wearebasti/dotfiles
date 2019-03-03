@@ -1,8 +1,11 @@
 [alias]
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr%Creset %Cblue[%ar]%Creset %C(bold blue)<%an>%Creset' --color --abbrev-commit
 	noup = log --graph --decorate --pretty=oneline --abbrev-commit --all @{upstream}^..
+    patch = !git --no-pager diff --no-color
 [color]
 	ui = true
+[pager]
+    diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
 [core]
     pager = less -R
 	excludesfile = ~/.gitignore

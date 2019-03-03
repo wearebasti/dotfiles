@@ -6,7 +6,7 @@ setopt appendhistory nomatch
 setopt correct  # autocorrect commands
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/Users/sebastian/.zshrc'
+zstyle :compinstall filename '/Users/sebastianseitz/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -37,6 +37,10 @@ source ~/.zkbd_file
 [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
 [[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
 # bindkey -m
+
+# iterm uses mac+arrow
+bindkey "^[a" beginning-of-line
+bindkey "^[e" end-of-line
 
 # Aliases
 source ~/.aliases
@@ -139,5 +143,5 @@ precmd() {
 }
 
 # AWS Stuff
-source ~/.aws_login
+# source ~/.aws_login
 export PATH="/usr/local/opt/openssl/bin:$PATH"

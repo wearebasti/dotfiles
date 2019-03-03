@@ -2,7 +2,7 @@
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ls='ls -FGlAhp --color=auto'          # Preferred 'ls' implementation
+alias ls='ls -FGlAhp'          # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 
 # Moar colors
@@ -26,10 +26,11 @@ alias gplease='git push --force-with-lease'
 alias fab="venvexec.sh ./ fab"
 alias inv="venvexec.sh ./ inv"
 
-alias docker_remove_containers='docker rm -f $(docker ps -aq)'
+alias docker_remove_containers='docker rm -fv $(docker ps -aq)'
 alias docker_remove_images='docker rmi -f $(docker images -aq)'
-alias docker_remove_volumes='docker volume rm $(docker volume ls -qf dangling=true)'
-alias dockersucks='docker_remove_containers && docker_remove_images && docker_remove_volumes'
+alias docker_remove_volumes='docker volume prune -f'
+alias docker_remove_network='docker network prune -f'
+alias dockersucks='docker_remove_containers || true && docker_remove_images || true && docker_remove_volumes && docker_remove_network'
 
 
 function purple {
@@ -55,3 +56,4 @@ function purple3 {
     echo 'cd "$VIRTUAL_ENV"/src/'"${1}" >> "$VIRTUAL_ENV"/bin/postactivate
     ln -s "$VIRTUAL_ENV"/src/"${1}" "$HOME"/Development/"${1}"
 }
+ctags=/usr/local/bin/ctags
