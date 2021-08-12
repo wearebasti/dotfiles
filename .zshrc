@@ -145,3 +145,10 @@ precmd() {
 # AWS Stuff
 # source ~/.aws_login
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# Created by `userpath` on 2020-10-29 16:13:11
+export PATH="$PATH:/Users/sebastianseitz/.local/bin"
+
+export NVM_DIR="/Users/sebastianseitz//.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -22,3 +22,10 @@
 [user]
 	name = basti
     email = 12233784+sebastianseitz@users.noreply.github.com
+[core]
+  attributesfile = ~/.gitattributes
+[merge "pofile"]
+    name = custom merge driver for gettext po files
+    driver = git-po-merge %A %O %B
+[pull]
+	rebase = false

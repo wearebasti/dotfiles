@@ -10,7 +10,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'tweekmonster/django-plus.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
-Plug 'ambv/black'
 Plug 'tpope/vim-fugitive'
 
 " Deoplete (wants neovim branch):
@@ -27,9 +26,6 @@ call plug#end()
 
 " Disable jedi completions in sake of deoplete-jedi
 let g:jedi#completions_enabled = 0
-
-" Run black on save
-autocmd BufWritePre *.py execute ':Black'
 
 " Make sure editorconfig & fugitive work together
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
