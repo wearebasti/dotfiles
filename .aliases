@@ -21,10 +21,6 @@ alias grb='git fetch && git rebase origin/master'
 alias gst='git status'
 alias gplease='git push --force-with-lease'
 
-# venv fab&inv calls
-alias fab="venvexec.sh ./ fab"
-alias inv="venvexec.sh ./ inv"
-
 alias docker_remove_containers='docker rm -fv $(docker ps -aq)'
 alias docker_remove_images='docker rmi -f $(docker images -aq)'
 alias docker_remove_volumes='docker volume prune -f'
