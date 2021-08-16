@@ -1,26 +1,27 @@
 set shell=zsh
 set nocp
 
-" Specify a directory for plugins
+" Use vim-plug
+" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'tweekmonster/django-plus.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-fugitive'
-
-" Deoplete (wants neovim branch):
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
 
 call plug#end()
 
