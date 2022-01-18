@@ -14,19 +14,16 @@ alias tac='tail -r'                         # well, mac...
 
 # Vim
 alias mview='mvim -R'
-alias diffmaster='git difftool --tool=gvimdiff origin/master'
 
 # git
-alias grb='git fetch && git rebase origin/master'
-alias gst='git status'
 alias gplease='git push --force-with-lease'
 
 alias docker_remove_containers='docker rm -fv $(docker ps -aq)'
 alias docker_remove_images='docker rmi -f $(docker images -aq)'
 alias docker_remove_volumes='docker volume prune -f'
 alias docker_remove_network='docker network prune -f'
-alias dockersucks='docker_remove_containers || true && docker_remove_images || true && docker_remove_volumes && docker_remove_network'
+alias dockerclean='docker_remove_containers || true && docker_remove_images || true && docker_remove_volumes && docker_remove_network'
 
 
 # Alasco
-alias aalasco="cd /Users/sebastianseitz/.virtualenvs/alasco-app/ && source bin/activate && cd src/alasco-app"
+alias aalasco="cd /Users/sebastianseitz/Development/alasco-app/ && source .venv/bin/activate"
