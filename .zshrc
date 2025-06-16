@@ -1,154 +1,122 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory nomatch
-setopt correct  # autocorrect commands
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/Users/sebastianseitz/.zshrc'
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+  autoload -Uz compinit
+  compinit
+fi
 
-# Help files:
-# unalias run-help
-autoload run-help
-HELPDIR=/usr/local/share/zsh/help
 
-# Make history awesome
-setopt INC_APPEND_HISTORY
+###### OH MY ZSH ######
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-# Use zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME="headline/headline"
+ZSH_THEME="gruvbox"
+SOLARIZED_THEME="dark"
 
-# Exports
-source ~/.exports
-[[ -r ~/.privates ]] && source ~/.privates
-bindkey -e  # explicitly set it here as export EDITOR=vim changes it appearently
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-# source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
-# autoload zkbd
-source ~/.zkbd_file
-[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" beginning-of-line
-[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" end-of-line
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-# bindkey -m
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-# iterm uses mac+arrow
-bindkey "^[a" beginning-of-line
-bindkey "^[e" end-of-line
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-# Aliases
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+HIST_STAMPS="yyyy-mm-dd"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+    git
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# You may need to manually set your language environment
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+##### ALIASES #######
 source ~/.aliases
 
-umask 022
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
-# plugins
-# source ~/.zsh_plugins/gitfast-zsh-plugin/git-prompt.sh
+# Add my keys to the ssh agent; passwords are pulled from the keychain.
+# The --apple-load-keychain option is unique to MacOS.
+ssh-add --apple-load-keychain
 
-autoload -Uz vcs_info
-
-# git checker:
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*' check-for-changes true
-zstyle ':vcs_info:git*' get-revision true
-zstyle ':vcs_info:git*' formats "[%b%m]%c%u" # branch % remote tracking
-## zstyle ':vcs_info:*+*:*' debug true
-zstyle ':vcs_info:git*+set-message:*' hooks git-st git-untracked
-
-+vi-git-untracked(){
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-        git status --porcelain | grep '??' &> /dev/null ; then
-        # This will show the marker if there are any untracked files in repo.
-        # If instead you want to show the marker only if there are untracked
-        # files in $PWD, use:
-        #[[ -n $(git ls-files --others --exclude-standard) ]] ; then
-        hook_com[staged]+=' ?'
-    fi
-}
-
-
-### git: Show +N/-N when your local branch is ahead-of or behind remote HEAD.
-# Make sure you have added misc to your 'formats':  %m
-function +vi-git-st() {
-    local ahead behind
-    local -a gitstatus
-
-    # for git prior to 1.7
-    # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
-
-    ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-    (( $ahead )) && gitstatus+=( " ⬆${ahead//[^[:alnum:]]/}" )
-
-    # for git prior to 1.7
-    # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
-    behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-    (( $behind )) && gitstatus+=( " ⬇${behind//[^[:alnum:]]/}" )
-
-    hook_com[misc]+=${(j::)gitstatus}
-}
-
-nl='
-'
-
-autoload -U colors && colors
-
-precmd() {
-    # As always first run the system so everything is setup correctly.
-    vcs_info
-    # And then just set PS1, RPS1 and whatever you want to.
-    # See "man zshmisc" for details on how to
-    # make this less readable. :-)
-
-#   # are we in a virtual-env? if: show name
-    if [ -n "$VIRTUAL_ENV" ]; then
-        venv_name='('$(basename $VIRTUAL_ENV)') '
-    else
-        venv_name=''
-    fi
-
-    if [ -z "${vcs_info_msg_0_}" ]; then
-        # Oh hey, nothing from vcs_info
-        PS1="%{$reset_color%}%{$fg[yellow]%}%~%{$reset_color%}${nl}%{$fg_bold[blue]%}${venv_name}➤➤➤ %{$reset_color%} "
-        unset RPS1
-    else
-        # vcs_info found something
-
-        # read stash count
-        stash_count=$(git stash list | wc -l)
-        if [ "$stash_count" -gt "0" ]; then
-            stash_count='(+'"${stash_count//[^[:alnum:]]/}"')'
-        else
-            stash_count=""
-        fi
-
-        # create Prompt Message w/ detailted git info
-        if git diff --ignore-submodules=dirty --exit-code --quiet 2>/dev/null >&2; then
-            if git diff --ignore-submodules=dirty --exit-code --cached --quiet 2>/dev/null >&2; then
-                repo="%{$reset_color%}%{$fg[green]%}${stash_count}${vcs_info_msg_0_}%{$reset_color%}"
-            else
-                repo="%{$reset_color%}%{$fg[cyan]%}${stash_count}${vcs_info_msg_0_}%{$reset_color%}"
-            fi
-        else
-            repo="%{$reset_color%}%{$fg[red]%}${stash_count}${vcs_info_msg_0_}%{$reset_color%}"
-        fi
-
-        PS1="%{$reset_color%}%{$fg[yellow]%}%~%{$reset_color%}${nl}%{$fg_bold[blue]%}${venv_name}➤➤➤ %{$reset_color%} "
-        RPS1=${repo}
-    fi
-}
-
-# AWS Stuff
-# source ~/.aws_login
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-# Created by `userpath` on 2020-10-29 16:13:11
-export PATH="$PATH:/Users/sebastianseitz/.local/bin"
-
-export NVM_DIR="/Users/sebastianseitz//.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# Activate starship.rs
+eval "$(starship init zsh)"
+# eval "$(/opt/homebrew/bin/rtx activate zsh)"
+# eval "$(~/.local/share/mise/bin/mise activate zsh)"
+eval "$(/opt/homebrew/bin/mise activate zsh)"
